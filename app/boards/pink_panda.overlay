@@ -13,6 +13,12 @@
 	chosen {
 		zephyr,entropy = &rng;
 	};
+	pwm_out {
+		compatible = "pwm-leds";
+		pwm {
+			pwms = <&pwm0 0 0 PWM_POLARITY_NORMAL>;
+		};
+	};
 };
 &pinctrl {
 	uart0_default: uart0_default {
@@ -69,18 +75,13 @@
 
 	pwm0_default: pwm0_default {
 		group1 {
-			psels = <NRF_PSEL(PWM_OUT0, 0, 8)>,
-				<NRF_PSEL(PWM_OUT1, 1, 9)>,
-				<NRF_PSEL(PWM_OUT2, 0, 12)>;
-			nordic,invert;
+			psels = <NRF_PSEL(PWM_OUT0, 0, 25)>;
 		};
 	};
 
 	pwm0_sleep: pwm0_sleep {
 		group1 {
-			psels = <NRF_PSEL(PWM_OUT0, 0, 8)>,
-				<NRF_PSEL(PWM_OUT1, 1, 9)>,
-				<NRF_PSEL(PWM_OUT2, 0, 12)>;
+			psels = <NRF_PSEL(PWM_OUT0, 0, 25)>;
 			low-power-enable;
 		};
 	};
@@ -127,7 +128,10 @@
 	status = "disabled";
 };
 &pwm0 {
-	status = "disabled";
+	status = "okay";
+	pinctrl-0 = <&pwm0_default>;
+	pinctrl-1 = <&pwm0_sleep>;
+	pinctrl-names = "default", "sleep";
 };
 &i2c0 {
 	status = "disabled";
