@@ -13,12 +13,6 @@
 	chosen {
 		zephyr,entropy = &rng;
 	};
-	pwm_out {
-		compatible = "pwm-leds";
-		pwm {
-			pwms = <&pwm0 0 0 PWM_POLARITY_NORMAL>;
-		};
-	};
 };
 &pinctrl {
 	uart0_default: uart0_default {
