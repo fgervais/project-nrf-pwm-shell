@@ -8,7 +8,8 @@ LOG_MODULE_REGISTER(main, LOG_LEVEL_DBG);
 #include <app_version.h>
 
 
-void main(void)
+int main(void)
 {
 	LOG_INF("🚀 MAIN START (%s) 🚀", APP_VERSION_FULL);
+	return 0;
 }
